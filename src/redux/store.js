@@ -3,6 +3,7 @@ import authReducer from "./slices/authSlice";
 import toastReducer from "./slices/toastSlice";
 import leadReducer from "./slices/leadSlice";
 import userReducer from "./slices/userSlice";
+import adminReducer from "./slices/adminSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     toast: toastReducer,
     leads: leadReducer,
     users: userReducer,
+    admin: adminReducer,
   },
 });
