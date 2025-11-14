@@ -269,6 +269,28 @@ export const fetchLeadStats = createAsyncThunk(
   }
 );
 
+// Fetch all leads (for managers and admins)
+export const fetchAllLeads = createAsyncThunk(
+  "leads/fetchAllLeads",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${config.BACKEND_URL}/api/leads/all`, {
+        method: "GET",
+        headers: createAuthHeaders(),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        return rejectWithValue(data.message || "Failed to fetch all leads");
+      }
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 // Lead slice
 const leadSlice = createSlice({
   name: "leads",
@@ -513,6 +535,21 @@ const leadSlice = createSlice({
         state.leadStats = action.payload.data;
       })
       .addCase(fetchLeadStats.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    // Fetch All Leads
+    builder
+      .addCase(fetchAllLeads.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAllLeads.fulfilled, (state, action) => {
+        state.loading = false;
+        state.leads = action.payload.data || action.payload;
+      })
+      .addCase(fetchAllLeads.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

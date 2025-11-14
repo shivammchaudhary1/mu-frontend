@@ -30,6 +30,10 @@ const toastSlice = createSlice({
 
 export const { addNotification, removeNotification, clearAllNotifications } =
   toastSlice.actions;
+
+// Alias for consistency with other components
+export const showToast = addNotification;
+
 export default toastSlice.reducer;
 
 // import { notify, notifySuccess, notifyError, notifyWarning } from '../utils/notify';
