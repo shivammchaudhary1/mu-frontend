@@ -66,9 +66,9 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.role = action.payload.user.role;
       // Store in localStorage
-      localStorage.setItem("crmtoken", JSON.stringify(action.payload.token));
+      localStorage.setItem("crmtoken", action.payload.token);
       localStorage.setItem("crmuser", JSON.stringify(action.payload.user));
-      localStorage.setItem("crmrole", JSON.stringify(action.payload.user.role));
+      localStorage.setItem("crmrole", action.payload.user.role);
     },
   },
   extraReducers: (builder) => {
@@ -76,19 +76,21 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.role = action.payload.user.role;
       // Store in localStorage
-      localStorage.setItem("crmtoken", JSON.stringify(action.payload.token));
+      localStorage.setItem("crmtoken", action.payload.token);
       localStorage.setItem("crmuser", JSON.stringify(action.payload.user));
-      localStorage.setItem("crmrole", JSON.stringify(action.payload.user.role));
+      localStorage.setItem("crmrole", action.payload.user.role);
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.role = action.payload.user.role;
       // Store in localStorage
-      localStorage.setItem("crmtoken", JSON.stringify(action.payload.token));
+      localStorage.setItem("crmtoken", action.payload.token);
       localStorage.setItem("crmuser", JSON.stringify(action.payload.user));
-      localStorage.setItem("crmrole", JSON.stringify(action.payload.user.role));
+      localStorage.setItem("crmrole", action.payload.user.role);
     });
   },
 });
