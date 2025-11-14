@@ -3,27 +3,15 @@ import { Link } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import AuthForm from "../../component/AuthForm";
 import Layout from "../../component/Layout";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/slices/authSlice";
 
 const Login = () => {
+  const dispatchToRedux = useDispatch();
+
   const handleLogin = async (loginData) => {
-    console.log("Login Data:", loginData);
-
-    // Here you would typically make an API call to your backend
     try {
-      // Example API call (uncomment when ready):
-      // const response = await fetch('http://localhost:4500/api/auth/login', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(loginData)
-      // });
-      // const result = await response.json();
-      // console.log('Login Result:', result);
-
-      // For now, just simulate success
-      console.log("Login successful!");
-      alert("Login successful! Check console for data.");
+      dispatchToRedux(login(loginData));
     } catch (error) {
       console.error("Login error:", error);
       throw error;

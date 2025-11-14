@@ -11,6 +11,7 @@ const initialState = {
 export const register = createAsyncThunk(
   "auth/register",
   async (userData, { rejectWithValue }) => {
+    console.log("User Data in Thunk:", userData);
     try {
       const response = await fetch(`${config.BACKEND_URL}/api/auth/register`, {
         method: "POST",

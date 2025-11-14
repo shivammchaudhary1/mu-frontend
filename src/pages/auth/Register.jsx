@@ -3,27 +3,20 @@ import { Link } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import AuthForm from "../../component/AuthForm";
 import Layout from "../../component/Layout";
+import { register } from "../../redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const Register = () => {
+  const dispatchToRedux = useDispatch();
+
   const handleRegister = async (registerData) => {
-    console.log("Register Data:", registerData);
+    // console.log("Register Data:", registerData);
 
     // Here you would typically make an API call to your backend
     try {
-      // Example API call (uncomment when ready):
-      // const response = await fetch('http://localhost:4500/api/auth/register', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(registerData)
-      // });
-      // const result = await response.json();
-      // console.log('Register Result:', result);
-
-      // For now, just simulate success
+      dispatchToRedux(register(registerData));
       console.log("Registration successful!");
-      alert("Registration successful! Check console for data.");
+      // alert("Registration successful! Check console for data.");
     } catch (error) {
       console.error("Registration error:", error);
       throw error;

@@ -16,23 +16,37 @@ const Navbar = () => {
   return (
     <AppBar
       position="static"
+      elevation={0}
       sx={{
-        bgcolor: "primary.main",
-        boxShadow: 2,
+        bgcolor: "background.paper",
+        borderBottom: 1,
+        borderColor: "divider",
       }}
     >
       <Container maxWidth="lg">
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
           {/* Left side - CRM Logo */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Business sx={{ mr: 1, fontSize: 28 }} />
-            <Typography
-              variant="h5"
-              component="div"
+            <Business
               sx={{
-                fontWeight: "bold",
-                color: "white",
+                mr: 1.5,
+                fontSize: 32,
+                color: "primary.main",
+              }}
+            />
+            <Typography
+              variant="h4"
+              component={Link}
+              to="/"
+              sx={{
+                fontWeight: 600,
+                color: "text.primary",
                 textDecoration: "none",
+                letterSpacing: "-0.025em",
+                "&:hover": {
+                  color: "primary.main",
+                  transition: "color 0.2s ease-in-out",
+                },
               }}
             >
               CRM
@@ -40,7 +54,7 @@ const Navbar = () => {
           </Box>
 
           {/* Right side - Login/Register buttons */}
-          <Box sx={{ display: "flex", gap: 1 }}>
+          <Box sx={{ display: "flex", gap: 2 }}>
             <Button
               component={Link}
               to="/login"
@@ -49,15 +63,27 @@ const Navbar = () => {
               }
               startIcon={<Login />}
               sx={{
-                color:
-                  location.pathname === "/login" ? "primary.main" : "white",
-                borderColor: "white",
-                bgcolor:
-                  location.pathname === "/login" ? "white" : "transparent",
-                "&:hover": {
-                  bgcolor: "rgba(255, 255, 255, 0.1)",
-                  borderColor: "white",
-                },
+                borderRadius: 2,
+                px: 3,
+                py: 1,
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                ...(location.pathname === "/login"
+                  ? {
+                      bgcolor: "primary.main",
+                      color: "white",
+                      "&:hover": {
+                        bgcolor: "primary.dark",
+                      },
+                    }
+                  : {
+                      color: "text.primary",
+                      borderColor: "divider",
+                      "&:hover": {
+                        borderColor: "primary.main",
+                        bgcolor: "rgba(37, 99, 235, 0.04)",
+                      },
+                    }),
               }}
             >
               Login
@@ -70,15 +96,27 @@ const Navbar = () => {
               }
               startIcon={<PersonAdd />}
               sx={{
-                color:
-                  location.pathname === "/register" ? "primary.main" : "white",
-                borderColor: "white",
-                bgcolor:
-                  location.pathname === "/register" ? "white" : "transparent",
-                "&:hover": {
-                  bgcolor: "rgba(255, 255, 255, 0.1)",
-                  borderColor: "white",
-                },
+                borderRadius: 2,
+                px: 3,
+                py: 1,
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                ...(location.pathname === "/register"
+                  ? {
+                      bgcolor: "primary.main",
+                      color: "white",
+                      "&:hover": {
+                        bgcolor: "primary.dark",
+                      },
+                    }
+                  : {
+                      color: "text.primary",
+                      borderColor: "divider",
+                      "&:hover": {
+                        borderColor: "primary.main",
+                        bgcolor: "rgba(37, 99, 235, 0.04)",
+                      },
+                    }),
               }}
             >
               Register

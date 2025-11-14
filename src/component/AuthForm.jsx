@@ -85,28 +85,37 @@ const AuthForm = ({ mode = "login", onSubmit, title, subtitle }) => {
   return (
     <Card
       sx={{
-        maxWidth: 400,
+        maxWidth: 440,
         width: "100%",
-        boxShadow: 3,
-        borderRadius: 2,
+        boxShadow: 1,
+        borderRadius: 3,
         mx: "auto",
+        border: 1,
+        borderColor: "divider",
       }}
     >
-      <CardContent sx={{ p: 4 }}>
+      <CardContent sx={{ p: 5 }}>
         {/* Header */}
-        <Box sx={{ textAlign: "center", mb: 3 }}>
+        <Box sx={{ textAlign: "center", mb: 4 }}>
           <Typography
-            variant="h4"
+            variant="h3"
             component="h1"
             sx={{
-              fontWeight: "bold",
-              color: "primary.main",
-              mb: 1,
+              fontWeight: 600,
+              color: "text.primary",
+              mb: 1.5,
+              letterSpacing: "-0.025em",
             }}
           >
             {title || (isLogin ? "Welcome Back" : "Create Account")}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body1"
+            sx={{
+              color: "text.secondary",
+              lineHeight: 1.6,
+            }}
+          >
             {subtitle ||
               (isLogin
                 ? "Sign in to your account"
